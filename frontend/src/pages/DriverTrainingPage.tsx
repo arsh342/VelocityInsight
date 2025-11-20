@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/client";
 import { generateDriverTrainingInsights } from "../api/gemini";
-import { Car, Bot, AlertTriangle, Flag, Lightbulb, Car as CarIcon } from "lucide-react";
+import { Car, Bot, Car as CarIcon } from "lucide-react";
 import Loading from "../components/Loading";
 import AlertBanner from "../components/AlertBanner";
 import { type AlertEvent } from "../api/websocket";
@@ -370,7 +370,7 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <span>
-                  <FaRobot className="text-primary" /> AI-Powered Training Recommendations
+                  <Bot className="text-primary" /> AI-Powered Training Recommendations
                 </span>
               </div>
               {trainingData ? (

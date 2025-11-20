@@ -1,4 +1,4 @@
-import { Car, Target, BarChart3, Bot, Zap, Database } from "lucide-react";
+import { Target, BarChart3, Bot, Zap } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
 
