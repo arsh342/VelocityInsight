@@ -1,0 +1,17 @@
+# General
+.DS_Store
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Node.js
+node_modules/
+dist/
+npm-debug.log*
+
+# Data
+dataset/
