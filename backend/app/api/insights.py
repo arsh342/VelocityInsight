@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/insights", tags=["insights"])
 
 # Gemini API integration
-GEMINI_API_KEY = "AIzaSyBCRy3L5lLJOI68eeR_HICYq8Tz66Dj_Hc"
+# GEMINI_API_KEY is now loaded from settings
 
 try:
     from google.generativeai import configure, GenerativeModel
-    configure(api_key=GEMINI_API_KEY)
+    configure(api_key=settings.gemini_api_key)
     gemini_model = GenerativeModel('gemini-2.5-flash')
 except ImportError:
     logger.warning("Google Generative AI not installed. Some features may not work.")
