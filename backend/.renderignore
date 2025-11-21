@@ -5,11 +5,7 @@ notebooks/
 *.ipynb
 
 # Ignore local data and models (upload separately or use S3)
-data/
-models/
-*.pkl
-*.joblib
-*.csv
+# (Removed to allow deployment of prepared dataset and models)
 
 # Ignore documentation
 *.md

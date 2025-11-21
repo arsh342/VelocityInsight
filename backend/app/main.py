@@ -17,7 +17,13 @@ app = FastAPI(title="GR-Insight Backend", description="Real-time race strategy &
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5173",  # Frontend local dev
+        "http://localhost:3000",  # Alternative local dev
+        "https://velocityinsight-backend.onrender.com",  # Production backend
+        "https://velocityinsight.onrender.com",  # Production frontend (if applicable)
+        "*"  # Allow all for now to debug
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
