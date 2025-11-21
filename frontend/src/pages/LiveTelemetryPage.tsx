@@ -9,7 +9,7 @@ import PositionTracker from "../components/PositionTracker";
 import VehiclePositionProvider from "../components/VehiclePositionProvider";
 import SectorComparison from "../components/SectorComparison";
 import DriverConsistency from "../components/DriverConsistency";
-import { wsClient, type AlertEvent } from "../api/websocket";
+import { type AlertEvent } from "../api/websocket";
 import { api } from "../api/client";
 import { BarChart3, Flag, Car } from "lucide-react";
 
@@ -36,9 +36,7 @@ export default function LiveTelemetryPage({
   const [availableTracks, setAvailableTracks] = useState<string[]>([]);
   const [availableVehicles, setAvailableVehicles] = useState<string[]>([]);
   const [availableLaps, setAvailableLaps] = useState<number[]>([]);
-  const [isConnected, setIsConnected] = useState(false);
   const [comparisonVehicles, setComparisonVehicles] = useState<string[]>([]);
-  const [liveMode, setLiveMode] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("results");
   const [raceResults, setRaceResults] = useState<any>(null);
   const [weatherData, setWeatherData] = useState<any>(null);
@@ -121,31 +119,11 @@ export default function LiveTelemetryPage({
     loadRaceData();
   }, [track, race]);
 
-  // WebSocket connection
-  useEffect(() => {
-    if (liveMode) {
-      wsClient.connect(track, race);
-      setIsConnected(wsClient.isConnected());
 
-      wsClient.onTelemetryUpdate(() => {
-        // Live data updates
-      });
-
-      return () => {
-        wsClient.disconnect();
-        setIsConnected(false);
-      };
-    } else {
-      if (wsClient.isConnected()) {
-        wsClient.disconnect();
-      }
-      setIsConnected(false);
-    }
-  }, [track, race, liveMode]);
 
   return (
     
-      <div className="min-h-screen w-full p-6 space-y-6 pb-20">
+      <div className="min-h-screen w-full p-4 md:p-6 space-y-6 pb-20">
         {/* Header */}
         <AlertBanner
           alerts={alerts}
@@ -155,7 +133,7 @@ export default function LiveTelemetryPage({
         />
 
         {/* Control Panel */}
-        <div className="glass-card p-6">
+        <div className="glass-card p-4 md:p-6">
           <div className="flex flex-wrap gap-4 items-end">
             <div className="space-y-2 min-w-[200px]">
               <label htmlFor="track-select" className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
@@ -190,32 +168,7 @@ export default function LiveTelemetryPage({
               </select>
             </div>
 
-            <div className="space-y-2 flex items-end pb-1">
-               <button
-                onClick={() => setLiveMode(!liveMode)}
-                className={`px-4 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${
-                  liveMode
-                    ? "bg-red-500/20 text-red-500 border border-red-500/50 hover:bg-red-500/30"
-                    : "bg-primary/20 text-primary border border-primary/50 hover:bg-primary/30"
-                }`}
-              >
-                <span className={`w-2 h-2 rounded-full ${liveMode ? "bg-red-500 animate-pulse" : "bg-primary"}`} />
-                {liveMode ? "Stop Live Data" : "Start Live Data"}
-              </button>
-            </div>
-
-            <div className="ml-auto flex items-center gap-2">
-               <div
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide border ${
-                  isConnected
-                    ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                    : "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                }`}
-              >
-                <span className={`w-2 h-2 rounded-full ${isConnected ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`} />
-                {isConnected ? "CONNECTED" : "DISCONNECTED"}
-              </div>
-            </div>
+            
           </div>
         </div>
 
@@ -223,9 +176,8 @@ export default function LiveTelemetryPage({
         <div className="space-y-6">
           {/* Race Header */}
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-6">
-            <div className="space-y-1">
+            <div>
               <h2 className="text-3xl font-display font-bold text-white">{track} Grand Prix</h2>
-              <p className="text-muted-foreground">2025 Season</p>
             </div>
             <div className="flex gap-8 bg-black/20 backdrop-blur-md px-6 py-3 rounded-xl border border-white/10">
               <div className="flex flex-col items-center">
@@ -251,7 +203,7 @@ export default function LiveTelemetryPage({
 
           {/* Winner Info */}
           {raceResults?.winner && (
-            <div className="glass-card p-6 flex items-center gap-4 bg-primary/10 border-primary/20">
+            <div className="glass-card p-4 md:p-6 flex items-center gap-4 bg-primary/10 border-primary/20">
               <div className="text-4xl">🏆</div>
               <div>
                 <h3 className="text-xl font-bold text-white">Race Winner: {raceResults.winner.driver}</h3>
@@ -283,7 +235,7 @@ export default function LiveTelemetryPage({
 
           {/* Tab Content */}
           {activeTab === "results" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Session Results: Race</span>
               </div>
@@ -323,7 +275,7 @@ export default function LiveTelemetryPage({
           )}
 
           {activeTab === "positions" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Position Tracking - All Cars by Lap</span>
               </div>
@@ -338,7 +290,7 @@ export default function LiveTelemetryPage({
           )}
 
           {activeTab === "lap-times" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Lap Time Comparison</span>
               </div>
@@ -448,7 +400,7 @@ export default function LiveTelemetryPage({
               />
               
               {/* Existing Pit Strategy */}
-              <div className="glass-card p-6">
+              <div className="glass-card p-4 md:p-6">
                 <div className="mb-4">
                   <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block mb-2">🚗 Vehicle</label>
                   <select
@@ -465,7 +417,7 @@ export default function LiveTelemetryPage({
                 </div>
                 <PitStrategy track={track} race={race} vehicleId={vehicleId} />
               </div>
-              <div className="glass-card p-6">
+              <div className="glass-card p-4 md:p-6">
                  <DriverConsistency
                   track={track}
                   race={race}
@@ -477,7 +429,7 @@ export default function LiveTelemetryPage({
 
           {activeTab === "telemetry" && (
             <div className="space-y-6">
-              <div className="glass-card p-6">
+              <div className="glass-card p-4 md:p-6">
                 <div className="flex flex-wrap gap-4 items-end mb-6">
                   <div className="space-y-2 min-w-[200px]">
                     <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block">🚗 Vehicle</label>
@@ -520,7 +472,7 @@ export default function LiveTelemetryPage({
                 />
               </div>
               
-              <section className="glass-card p-6">
+              <section className="glass-card p-4 md:p-6">
                 <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Track Position - All Cars</div>
                 <VehiclePositionProvider
                   track={track}
@@ -544,7 +496,7 @@ export default function LiveTelemetryPage({
 
           {activeTab === "track-map" && (
             <div className="space-y-6">
-              <div className="glass-card p-6">
+              <div className="glass-card p-4 md:p-6">
                 <div className="flex flex-wrap gap-4 items-end mb-6">
                   <div className="space-y-2 min-w-[200px]">
                     <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider block">🚗 Vehicle</label>
@@ -603,7 +555,7 @@ export default function LiveTelemetryPage({
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <section className="glass-card p-6">
+                <section className="glass-card p-4 md:p-6">
                   <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Track Information</div>
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p><strong className="text-white">Circuit Length:</strong> 4.2 km</p>

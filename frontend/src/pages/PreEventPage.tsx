@@ -110,7 +110,7 @@ export default function PreEventPage() {
 
   return (
     
-      <div className="min-h-screen w-full p-6 space-y-6 pb-20">
+      <div className="min-h-screen w-full p-4 md:p-6 space-y-6 pb-20">
         {/* Alert Banner */}
         <AlertBanner
           alerts={alerts}
@@ -120,7 +120,7 @@ export default function PreEventPage() {
         />
 
         {/* Control Panel */}
-        <div className="glass-card p-6">
+        <div className="glass-card p-4 md:p-6">
           <div className="flex flex-col gap-4">
             {/* Track Selection and Update Button */}
             <div className="flex flex-wrap gap-4 items-end">
@@ -268,14 +268,14 @@ export default function PreEventPage() {
 
           {/* Tab Content */}
           {activeTab === "conditions" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Race Conditions Analysis</span>
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Current Conditions Card */}
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Current Conditions</span>
                     </div>
@@ -302,7 +302,7 @@ export default function PreEventPage() {
                   </section>
 
                   {/* Track Characteristics Card */}
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Setup Recommendations</span>
                     </div>
@@ -334,11 +334,11 @@ export default function PreEventPage() {
                   </section>
 
                   {/* Historical Performance */}
-                  <section className="glass-card p-6 bg-white/5 md:col-span-2">
+                  <section className="glass-card p-4 md:p-6 bg-white/5 md:col-span-2">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Historical Data Analysis</span>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="p-4 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center">
                         <span className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Best Historical</span>
                         <span className="text-lg font-bold text-white">
@@ -380,11 +380,11 @@ export default function PreEventPage() {
           )}
 
           {activeTab === "predictions" && predictions && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Performance Predictions</span>
               </div>
-              <section className="glass-card p-6 bg-white/5">
+              <section className="glass-card p-4 md:p-6 bg-white/5">
                 <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                   <span>Expected Performance</span>
                 </div>
@@ -419,7 +419,7 @@ export default function PreEventPage() {
           )}
 
           {activeTab === "ai-insights" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>
                   <HelmetIcon className="text-primary h-5 w-5" /> Race Strategy Insights
@@ -427,7 +427,7 @@ export default function PreEventPage() {
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Analysis</span>
                     </div>
@@ -461,7 +461,7 @@ export default function PreEventPage() {
                   </section>
 
                   {predictions.ai_analysis?.strategicRecommendations && (
-                    <section className="glass-card p-6 bg-white/5">
+                    <section className="glass-card p-4 md:p-6 bg-white/5">
                       <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Strategic Recommendations</span>
                       </div>
@@ -487,14 +487,14 @@ export default function PreEventPage() {
           )}
 
           {activeTab === "qualifying" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Qualifying & Race Forecast</span>
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {predictions.ai_analysis?.qualifyingPredictions && (
-                    <section className="glass-card p-6 bg-white/5">
+                    <section className="glass-card p-4 md:p-6 bg-white/5">
                       <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Qualifying Predictions</span>
                       </div>
@@ -512,7 +512,7 @@ export default function PreEventPage() {
                   )}
 
                   {predictions.ai_analysis?.racePaceForecast && (
-                    <section className="glass-card p-6 bg-white/5">
+                    <section className="glass-card p-4 md:p-6 bg-white/5">
                       <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Race Pace Forecast</span>
                       </div>
@@ -538,7 +538,7 @@ export default function PreEventPage() {
           )}
 
           {!predictions && activeTab !== "conditions" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>No Predictions Available</span>
               </div>

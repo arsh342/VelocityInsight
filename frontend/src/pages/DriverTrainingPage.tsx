@@ -113,7 +113,7 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
 
   return (
     
-      <div className="min-h-screen w-full p-6 space-y-6 pb-20">
+      <div className="min-h-screen w-full p-4 md:p-6 space-y-6 pb-20">
         <div className="text-center space-y-4 mb-8">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-white flex items-center justify-center gap-4">
             <Car className="text-primary h-10 w-10" /> Driver Training
@@ -123,7 +123,7 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
           </p>
         </div>
 
-        <div className="glass-card p-6">
+        <div className="glass-card p-4 md:p-6">
           <div className="flex flex-wrap gap-4 items-end">
             <div className="space-y-2 min-w-[200px]">
               <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Track</label>
@@ -265,17 +265,17 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
 
           {/* Tab Content */}
           {activeTab === "analysis" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Performance Overview</span>
               </div>
               {trainingData ? (
                 <div className="grid grid-cols-1 gap-6">
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Performance Summary</span>
                     </div>
-                    <div className="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="p-4 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 transition-colors">
                         <span className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Best Lap Time</span>
                         <span className="text-xl font-bold text-white">
@@ -321,7 +321,7 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
           )}
 
           {activeTab === "ai-insights" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>
                   <HelmetIcon className="text-primary" /> Training Recommendations
@@ -329,7 +329,7 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
               </div>
               {trainingData ? (
                 <div className="gap-6">
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Analysis</span>
                     </div>
@@ -388,13 +388,13 @@ export default function DriverTrainingPage({}: DriverTrainingPageProps) {
           )}
 
           {activeTab === "telemetry" && (
-            <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
+            <section className="glass-card p-4 md:p-6 animate-in slide-in-from-bottom-4 duration-500">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Telemetry Insights</span>
               </div>
               {trainingData?.telemetry_insights ? (
                 <div className="grid grid-cols-1 gap-6">
-                  <section className="glass-card p-6 bg-white/5">
+                  <section className="glass-card p-4 md:p-6 bg-white/5">
                     <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Speed Analysis</span>
                     </div>

@@ -163,7 +163,7 @@ export default function PostEventPage({}: PostEventPageProps) {
 
   return (
     
-      <div className="min-h-screen w-full p-6 space-y-6 pb-20">
+      <div className="min-h-screen w-full p-4 md:p-6 space-y-6 pb-20">
         <div className="text-center space-y-4 mb-8">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-white flex items-center justify-center gap-4">
             <Car className="text-primary h-10 w-10" /> Post-Event Analysis
@@ -173,7 +173,7 @@ export default function PostEventPage({}: PostEventPageProps) {
           </p>
         </div>
 
-        <div className="glass-card p-6 relative z-50">
+        <div className="glass-card p-4 md:p-6 relative z-50">
           <div className="flex flex-wrap gap-4 items-end">
             <div className="space-y-2 min-w-[200px]">
               <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Track</label>
@@ -245,7 +245,7 @@ export default function PostEventPage({}: PostEventPageProps) {
         {analysis && (
           <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
             {/* Upload Section */}
-            <div className="glass-card p-6 border-dashed border-white/20">
+            <div className="glass-card p-4 md:p-6 border-dashed border-white/20">
               <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Upload Race Data</h2>
               <div className="flex flex-col items-center gap-4 p-8 border-2 border-dashed border-white/10 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
                 <input
@@ -270,12 +270,12 @@ export default function PostEventPage({}: PostEventPageProps) {
             {/* Race Summary */}
             {analysis && (
               <>
-                <div className="glass-card p-6">
+                <div className="glass-card p-4 md:p-6">
                   <div className="flex items-center gap-2 mb-2">
                 <Target className="text-primary h-5 w-5" />
                 <h3 className="font-bold text-white">Key Insights</h3>
               </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="p-4 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center hover:bg-white/10 transition-colors">
                       <span className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Winner</span>
                       <span className="text-xl font-bold text-primary">{analysis.winner || "N/A"}</span>
@@ -301,7 +301,7 @@ export default function PostEventPage({}: PostEventPageProps) {
 
                 {/* Key Moments */}
                 {analysis.key_moments && (
-                  <div className="glass-card p-6">
+                  <div className="glass-card p-4 md:p-6">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                       <Target className="text-primary h-5 w-5" /> Key Race Moments
                     </h2>
@@ -322,7 +322,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                 )}
 
                 {/* Race Story */}
-                <div className="glass-card p-6">
+                <div className="glass-card p-4 md:p-6">
                   <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                     <HelmetIcon className="text-primary h-5 w-5" /> Race Story
                   </h2>
@@ -333,7 +333,7 @@ export default function PostEventPage({}: PostEventPageProps) {
 
                 {/* Strategic Decisions */}
                 {analysis.ai_story?.strategicDecisions && (
-                  <div className="glass-card p-6">
+                  <div className="glass-card p-4 md:p-6">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Strategic Decisions</h2>
                     <ul className="space-y-2">
                       {Array.isArray(analysis.ai_story.strategicDecisions) ? (
@@ -357,7 +357,7 @@ export default function PostEventPage({}: PostEventPageProps) {
 
                 {/* Vehicle Comparison */}
                 {selectedVehicles.length > 0 && vehicleAnalysis.size > 0 && (
-                  <div className="glass-card p-6">
+                  <div className="glass-card p-4 md:p-6">
                     <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                       <Car className="text-primary h-5 w-5" /> Vehicle Comparison
                     </h2>
@@ -369,7 +369,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                             className="glass-card p-4 bg-white/5"
                           >
                             <h3 className="text-md font-bold text-gray-900 dark:text-white mb-3 border-b border-white/10 pb-2">{vehicleId}</h3>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                               <div className="flex flex-col">
                                 <span className="text-xs text-muted-foreground">Best Lap</span>
                                 <span className="font-mono font-bold text-primary">

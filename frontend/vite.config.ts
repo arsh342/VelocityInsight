@@ -10,4 +10,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'recharts-vendor': ['recharts'],
+          'ui-vendor': ['lucide-react', 'axios'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+  },
 })
