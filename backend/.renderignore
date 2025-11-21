@@ -1,0 +1,23 @@
+# Ignore test files to speed up deployment
+test_*.py
+tests/
+notebooks/
+*.ipynb
+
+# Ignore local data and models (upload separately or use S3)
+data/
+models/
+*.pkl
+*.joblib
+*.csv
+
+# Ignore documentation
+*.md
+!README.md
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore environment files (set in Render dashboard instead)
+.env
+.env.*

@@ -19,9 +19,33 @@ The startup script that:
 ### `render.yaml`
 The Render configuration file that defines:
 - Service type: Python web service
+- Root directory: `backend` (since the backend is in a subdirectory)
 - Build command: `pip install -r requirements.txt`
 - Start command: `python start.py`
 - Python version: 3.11.0
+
+## Environment Variables
+
+The application uses the following environment variables with their defaults:
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `PORT` | No | `8000` | Port to bind to (Render provides this automatically) |
+| `ENV` | No | `production` | Environment mode (`development` or `production`) |
+| `DATASET_ROOT` | No | `./data` | Path to the dataset directory |
+| `DEFAULT_TRACK` | No | `barber` | Default track name |
+| `DEFAULT_RACE` | No | `R1` | Default race identifier |
+| `GEMINI_API_KEY` | No | `None` | Google Gemini API key (optional, only needed for AI features) |
+
+### Setting Environment Variables in Render
+
+1. Go to your service in the Render Dashboard
+2. Navigate to the "Environment" tab
+3. Click "Add Environment Variable"
+4. Add any variables you need (especially `GEMINI_API_KEY` if using AI features)
+
+> [!NOTE]
+> All environment variables have sensible defaults, so the service will start even without any custom configuration. However, for full functionality (especially AI-powered insights), you should set `GEMINI_API_KEY`.
 
 ## Deployment Steps
 
