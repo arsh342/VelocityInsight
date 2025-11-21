@@ -185,7 +185,7 @@ export default function TrackMap({
         });
         
         path.addEventListener("mouseleave", () => {
-          path.getAttribute("stroke-width", "4");
+          path.setAttribute("stroke-width", "4");
           path.style.filter = "drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))";
         });
       }
