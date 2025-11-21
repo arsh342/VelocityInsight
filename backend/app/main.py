@@ -22,7 +22,8 @@ app.add_middleware(
         "http://localhost:3000",  # Alternative local dev
         "https://velocityinsight-backend.onrender.com",  # Production backend
         "https://velocityinsight.onrender.com",  # Production frontend (if applicable)
-        "*"  # Allow all for now to debug
+        "*",  # Allow all for now to debug
+        "http://localhost:8000",  # Local dev
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -284,7 +284,7 @@ export default function LiveTelemetryPage({
           {/* Tab Content */}
           {activeTab === "results" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Session Results: Race</span>
               </div>
               {raceResults ? (
@@ -324,7 +324,7 @@ export default function LiveTelemetryPage({
 
           {activeTab === "positions" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Position Tracking - All Cars by Lap</span>
               </div>
               <div className="w-full overflow-x-auto">
@@ -339,7 +339,7 @@ export default function LiveTelemetryPage({
 
           {activeTab === "lap-times" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Lap Time Comparison</span>
               </div>
               <div className="flex items-center gap-2 mb-4">
@@ -521,7 +521,7 @@ export default function LiveTelemetryPage({
               </div>
               
               <section className="glass-card p-6">
-                <div className="text-lg font-bold text-white mb-4">Track Position - All Cars</div>
+                <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Track Position - All Cars</div>
                 <VehiclePositionProvider
                   track={track}
                   race={race}
@@ -578,7 +578,7 @@ export default function LiveTelemetryPage({
                     )}
                   </div>
                 </div>
-                <div className="text-lg font-bold text-white mb-4">Interactive Track Map - {track}</div>
+                <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Interactive Track Map - {track}</div>
                 <VehiclePositionProvider
                   track={track}
                   race={race}
@@ -604,7 +604,7 @@ export default function LiveTelemetryPage({
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <section className="glass-card p-6">
-                  <div className="text-lg font-bold text-white mb-4">Track Information</div>
+                  <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Track Information</div>
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p><strong className="text-white">Circuit Length:</strong> 4.2 km</p>
                     <p><strong className="text-white">Number of Turns:</strong> 15</p>

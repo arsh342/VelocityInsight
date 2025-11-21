@@ -12,6 +12,7 @@ from datetime import datetime
 
 from ..core.config import settings
 from ..data.loader import load_lap_times, load_race_telemetry_wide
+from ..data.sector_mapper import get_sector_mapper
 from ..ml.tire_degradation import TireDegradationModel
 from ..ml.pit_strategy import PitStrategyOptimizer
 from ..ml.lap_time_predictor import get_lap_time_predictor
@@ -82,26 +83,31 @@ async def get_driver_training_insights(
         worst_lap_time = float(lap_times.max())
         consistency = float(lap_times.std())
         
-        # Sector analysis
+        
+        # Sector analysis - use SectorMapper to load actual sector data
         sectors = {}
-        if 'sector1' in vehicle_laps.columns:
-            sectors['sector1'] = {
-                'avg': float(vehicle_laps['sector1'].mean()),
-                'best': float(vehicle_laps['sector1'].min()),
-                'consistency': float(vehicle_laps['sector1'].std())
-            }
-        if 'sector2' in vehicle_laps.columns:
-            sectors['sector2'] = {
-                'avg': float(vehicle_laps['sector2'].mean()),
-                'best': float(vehicle_laps['sector2'].min()),
-                'consistency': float(vehicle_laps['sector2'].std())
-            }
-        if 'sector3' in vehicle_laps.columns:
-            sectors['sector3'] = {
-                'avg': float(vehicle_laps['sector3'].mean()),
-                'best': float(vehicle_laps['sector3'].min()),
-                'consistency': float(vehicle_laps['sector3'].std())
-            }
+        try:
+            mapper = get_sector_mapper(settings.dataset_root)
+            df_sectors = mapper.load_sector_data(track, race)
+            
+            # Filter to vehicle
+            vehicle_sectors = df_sectors[df_sectors['vehicle_id'] == vehicle_id]
+            
+            if not vehicle_sectors.empty:
+                # Get sector consistency stats
+                sector_stats = mapper.get_sector_consistency(df_sectors, vehicle_id)
+                
+                # Format for frontend
+                for sector_name, stats in sector_stats.items():
+                    sectors[sector_name] = {
+                        'avg': stats['mean'],
+                        'best': stats['min'],
+                        'consistency': stats['std']
+                    }
+        except Exception as e:
+            logger.warning(f"Could not load sector data for {track}/{race}/{vehicle_id}: {e}")
+            # sectors will remain empty dict
+        
         
         # Telemetry analysis
         telemetry_insights = {}

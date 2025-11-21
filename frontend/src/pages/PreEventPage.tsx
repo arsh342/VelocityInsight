@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/client";
 import { generatePreEventInsights } from "../api/gemini";
-import { Bot, Sun, Car } from "lucide-react";
+import { Sun, Car, RefreshCw } from "lucide-react";
 import { Thermometer } from "lucide-react";
 import AlertBanner from "../components/AlertBanner";
 import { type AlertEvent } from "../api/websocket";
 import { useDynamicLoadingMessage } from "../hooks/useDynamicLoadingMessage";
+import { HelmetIcon } from "../components/icons/HelmetIcon";
 
 
 
@@ -42,7 +43,7 @@ export default function PreEventPage() {
     "Analyzing track conditions...",
     "Processing weather data...",
     "Calculating lap time predictions...",
-    "Generating AI insights...",
+    "Generating insights...",
     "Computing race pace forecast...",
     "Evaluating tire degradation...",
     "Finalizing predictions...",
@@ -86,7 +87,7 @@ export default function PreEventPage() {
       const data = await api.getPreEventPrediction(track, weather, trackTemp);
       setPredictions(data);
 
-      // Generate AI insights separately - don't let this fail the whole process
+      // Generate insights separately - don't let this fail the whole process
       try {
         const insights = await generatePreEventInsights(
           track,
@@ -96,8 +97,8 @@ export default function PreEventPage() {
         );
         setAiInsights(insights);
       } catch (aiError) {
-        console.error("Error generating AI insights (predictions still available):", aiError);
-        setAiInsights("AI insights temporarily unavailable. Please try again later.");
+        console.error("Error generating insights (predictions still available):", aiError);
+        setAiInsights("Insights temporarily unavailable. Please try again later.");
       }
     } catch (error) {
       console.error("Error generating predictions:", error);
@@ -154,7 +155,7 @@ export default function PreEventPage() {
                   </>
                 ) : (
                   <>
-                    🔄 Update
+                    <RefreshCw className="h-4 w-4" /> Update
                   </>
                 )}
               </button>
@@ -179,8 +180,8 @@ export default function PreEventPage() {
             {weatherFetched && (
               <div className="flex flex-wrap gap-4 p-4 bg-white/5 rounded-lg border border-white/10">
                 <div className="flex items-center gap-3 mb-4">
-              <Bot className="text-primary h-6 w-6" />
-              <h3 className="text-xl font-bold text-white">AI Strategy Recommendation</h3>
+              <HelmetIcon className="text-primary h-6 w-6" />
+              <h3 className="text-xl font-bold text-white">Strategy Recommendation</h3>
             </div>
                 <div className="flex items-center gap-2">
                   <Sun className="text-primary h-5 w-5" />
@@ -248,7 +249,7 @@ export default function PreEventPage() {
             {[
               { id: "conditions", label: "Race Conditions" },
               { id: "predictions", label: "Performance Predictions" },
-              { id: "ai-insights", label: "AI Strategy Insights" },
+              { id: "ai-insights", label: "Strategy Insights" },
               { id: "qualifying", label: "Qualifying Forecast" }
             ].map((tab) => (
               <button
@@ -268,14 +269,14 @@ export default function PreEventPage() {
           {/* Tab Content */}
           {activeTab === "conditions" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Race Conditions Analysis</span>
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Current Conditions Card */}
                   <section className="glass-card p-6 bg-white/5">
-                    <div className="text-lg font-bold text-white mb-4">
+                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Current Conditions</span>
                     </div>
                     <div className="space-y-4">
@@ -302,7 +303,7 @@ export default function PreEventPage() {
 
                   {/* Track Characteristics Card */}
                   <section className="glass-card p-6 bg-white/5">
-                    <div className="text-lg font-bold text-white mb-4">
+                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Setup Recommendations</span>
                     </div>
                     <div className="space-y-3">
@@ -334,7 +335,7 @@ export default function PreEventPage() {
 
                   {/* Historical Performance */}
                   <section className="glass-card p-6 bg-white/5 md:col-span-2">
-                    <div className="text-lg font-bold text-white mb-4">
+                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                       <span>Historical Data Analysis</span>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -380,11 +381,11 @@ export default function PreEventPage() {
 
           {activeTab === "predictions" && predictions && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Performance Predictions</span>
               </div>
               <section className="glass-card p-6 bg-white/5">
-                <div className="text-lg font-bold text-white mb-4">
+                <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                   <span>Expected Performance</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -419,16 +420,16 @@ export default function PreEventPage() {
 
           {activeTab === "ai-insights" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>
-                  <Bot className="text-primary h-5 w-5" /> AI Race Strategy Insights
+                  <HelmetIcon className="text-primary h-5 w-5" /> Race Strategy Insights
                 </span>
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <section className="glass-card p-6 bg-white/5">
-                    <div className="text-lg font-bold text-white mb-4">
-                      <span>AI Analysis</span>
+                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                      <span>Analysis</span>
                     </div>
                     <div className="space-y-2">
                       {aiInsights ? (
@@ -454,14 +455,14 @@ export default function PreEventPage() {
                             );
                           })
                       ) : (
-                        <div className="text-muted-foreground">Generating AI insights...</div>
+                        <div className="text-muted-foreground">Generating insights...</div>
                       )}
                     </div>
                   </section>
 
                   {predictions.ai_analysis?.strategicRecommendations && (
                     <section className="glass-card p-6 bg-white/5">
-                      <div className="text-lg font-bold text-white mb-4">
+                      <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Strategic Recommendations</span>
                       </div>
                       <div className="space-y-2">
@@ -479,7 +480,7 @@ export default function PreEventPage() {
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-32 text-muted-foreground animate-pulse">
-                  Generate predictions first to get AI insights
+                  Generate predictions first to get insights
                 </div>
               )}
             </section>
@@ -487,14 +488,14 @@ export default function PreEventPage() {
 
           {activeTab === "qualifying" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>Qualifying & Race Forecast</span>
               </div>
               {predictions ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {predictions.ai_analysis?.qualifyingPredictions && (
                     <section className="glass-card p-6 bg-white/5">
-                      <div className="text-lg font-bold text-white mb-4">
+                      <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Qualifying Predictions</span>
                       </div>
                       <div className="space-y-2">
@@ -512,7 +513,7 @@ export default function PreEventPage() {
 
                   {predictions.ai_analysis?.racePaceForecast && (
                     <section className="glass-card p-6 bg-white/5">
-                      <div className="text-lg font-bold text-white mb-4">
+                      <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                         <span>Race Pace Forecast</span>
                       </div>
                       <div className="space-y-2">
@@ -538,7 +539,7 @@ export default function PreEventPage() {
 
           {!predictions && activeTab !== "conditions" && (
             <section className="glass-card p-6 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <div className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <span>No Predictions Available</span>
               </div>
               <div className="text-muted-foreground p-8 text-center border border-dashed border-white/10 rounded-lg">

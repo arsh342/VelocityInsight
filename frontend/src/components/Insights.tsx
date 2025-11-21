@@ -45,7 +45,7 @@ function Insights({ track, race, vehicleId, currentLap = 5 }: InsightsProps) {
           prediction,
         };
 
-        // Generate AI insights
+        // Generate insights
         const aiInsights = await generateRaceInsights(track, race, vehicleId, performanceData);
         setInsights(aiInsights);
 
@@ -78,7 +78,7 @@ function Insights({ track, race, vehicleId, currentLap = 5 }: InsightsProps) {
     return (
       <div className="w-full space-y-6">
         <h3 className="text-xl font-bold text-primary flex items-center gap-2">
-          <span className="text-2xl">🏎️</span> AI Race Insights
+          <span className="text-2xl">🏎️</span> Race Insights
         </h3>
         <div className="w-full h-[300px] glass-card flex flex-col items-center justify-center text-muted-foreground animate-pulse">
           <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
@@ -92,7 +92,7 @@ function Insights({ track, race, vehicleId, currentLap = 5 }: InsightsProps) {
     return (
       <div className="w-full space-y-6">
         <h3 className="text-xl font-bold text-primary flex items-center gap-2">
-          <span className="text-2xl">🏎️</span> AI Race Insights
+          <span className="text-2xl">🏎️</span> Race Insights
         </h3>
         <div className="w-full h-[200px] glass-card flex flex-col items-center justify-center text-destructive bg-destructive/10 border-destructive/20">
           <p className="text-lg font-bold mb-2">❌ {error}</p>
@@ -108,7 +108,7 @@ function Insights({ track, race, vehicleId, currentLap = 5 }: InsightsProps) {
   return (
     <div className="w-full space-y-6">
       <h3 className="text-xl font-bold text-primary flex items-center gap-2">
-        <span className="text-2xl">🏎️</span> AI Race Insights
+        <span className="text-2xl">🏎️</span> Race Insights
       </h3>
 
       {/* Strategic Instruction Card */}

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { api } from "../api/client";
 import { generatePostEventInsights } from "../api/gemini";
-import { Target, Bot, Car } from "lucide-react";
-
+import { Target, Car } from "lucide-react";
+import { HelmetIcon } from "../components/icons/HelmetIcon";
 
 
 interface PostEventPageProps {
@@ -85,7 +85,7 @@ export default function PostEventPage({}: PostEventPageProps) {
       const data = await api.getPostEventAnalysis(selectedTrack, selectedRace);
       setAnalysis(data);
 
-      // Generate AI insights
+      // Generate insights
       const insights = await generatePostEventInsights(
         selectedTrack,
         selectedRace,
@@ -132,7 +132,7 @@ export default function PostEventPage({}: PostEventPageProps) {
       );
       setAnalysis(result);
 
-      // Generate AI insights for uploaded data
+      // Generate insights for uploaded data
       const insights = await generatePostEventInsights(
         selectedTrack,
         selectedRace,
@@ -246,7 +246,7 @@ export default function PostEventPage({}: PostEventPageProps) {
           <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
             {/* Upload Section */}
             <div className="glass-card p-6 border-dashed border-white/20">
-              <h2 className="text-lg font-bold text-white mb-4">Upload Race Data</h2>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Upload Race Data</h2>
               <div className="flex flex-col items-center gap-4 p-8 border-2 border-dashed border-white/10 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
                 <input
                   type="file"
@@ -302,7 +302,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                 {/* Key Moments */}
                 {analysis.key_moments && (
                   <div className="glass-card p-6">
-                    <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                       <Target className="text-primary h-5 w-5" /> Key Race Moments
                     </h2>
                     <div className="space-y-4">
@@ -321,10 +321,10 @@ export default function PostEventPage({}: PostEventPageProps) {
                   </div>
                 )}
 
-                {/* AI-Generated Race Story */}
+                {/* Race Story */}
                 <div className="glass-card p-6">
-                  <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <Bot className="text-primary h-5 w-5" /> AI-Generated Race Story
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                    <HelmetIcon className="text-primary h-5 w-5" /> Race Story
                   </h2>
                   <div className="text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
                     {aiInsights || "Generating race narrative..."}
@@ -334,7 +334,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                 {/* Strategic Decisions */}
                 {analysis.ai_story?.strategicDecisions && (
                   <div className="glass-card p-6">
-                    <h2 className="text-lg font-bold text-white mb-4">Strategic Decisions</h2>
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Strategic Decisions</h2>
                     <ul className="space-y-2">
                       {Array.isArray(analysis.ai_story.strategicDecisions) ? (
                         analysis.ai_story.strategicDecisions.map(
@@ -358,7 +358,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                 {/* Vehicle Comparison */}
                 {selectedVehicles.length > 0 && vehicleAnalysis.size > 0 && (
                   <div className="glass-card p-6">
-                    <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                       <Car className="text-primary h-5 w-5" /> Vehicle Comparison
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -368,7 +368,7 @@ export default function PostEventPage({}: PostEventPageProps) {
                             key={vehicleId}
                             className="glass-card p-4 bg-white/5"
                           >
-                            <h3 className="text-md font-bold text-white mb-3 border-b border-white/10 pb-2">{vehicleId}</h3>
+                            <h3 className="text-md font-bold text-gray-900 dark:text-white mb-3 border-b border-white/10 pb-2">{vehicleId}</h3>
                             <div className="grid grid-cols-2 gap-4">
                               <div className="flex flex-col">
                                 <span className="text-xs text-muted-foreground">Best Lap</span>

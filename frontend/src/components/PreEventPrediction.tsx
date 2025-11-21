@@ -30,7 +30,7 @@ function PreEventPrediction({ track }: PreEventPredictionProps) {
     "Generating qualifying predictions...",
     "Computing race pace forecasts...",
     "Evaluating strategic recommendations...",
-    "Compiling AI analysis...",
+    "Compiling analysis...",
   ];
   
   const loadingMessage = useDynamicLoadingMessage(predictionMessages, 3000);
@@ -156,7 +156,7 @@ function PreEventPrediction({ track }: PreEventPredictionProps) {
             </div>
           </div>
 
-          {/* AI Analysis */}
+          {/* Analysis */}
           {aiAnalysis.qualifyingPredictions && (
             <div className="glass-card p-6 border-l-4 border-l-purple-500">
               <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">

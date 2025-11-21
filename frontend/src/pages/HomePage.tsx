@@ -1,6 +1,7 @@
-import { Target, BarChart3, Bot, Zap } from "lucide-react";
+import { Target, BarChart3, Zap } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { HelmetIcon } from "@/components/icons/HelmetIcon";
 
 
 interface HomePageProps {
@@ -27,7 +28,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto font-light">
-              Advanced telemetry analysis and AI-powered insights for competitive racing
+              Advanced telemetry analysis and insights for competitive racing
             </p>
             
             <div className="grid grid-cols-3 gap-8 mt-8">
@@ -50,7 +51,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         {/* Features Section - Bento Grid */}
         <section className="w-full max-w-6xl mx-auto mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-2">Core Analytics Features</h2>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Core Analytics Features</h2>
             <p className="text-muted-foreground">Powerful tools to elevate your racing performance</p>
           </div>
 
@@ -74,7 +75,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent" />
               }
               Icon={BarChart3}
-              description="AI-powered forecasting before the green flag. Predict qualifying, race pace, and tire degradation with machine learning."
+              description="Forecasting before the green flag. Predict qualifying, race pace, and tire degradation with machine learning."
               cta="View Predictions"
               onClick={() => onNavigate("pre-event")}
             />
@@ -86,7 +87,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-transparent" />
               }
               Icon={BarChart3}
-              description="Comprehensive race storytelling with AI insights. Discover key moments and strategic decisions that defined the race."
+              description="Comprehensive race storytelling with insights. Discover key moments and strategic decisions that defined the race."
               cta="Analyze Race"
               onClick={() => onNavigate("post-event")}
             />
@@ -104,14 +105,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             />
             
             <BentoCard
-              name="Google Gemini AI"
+              name="Google Gemini"
               className="lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4"
               background={
                 <div className="absolute inset-0 bg-gradient-to-tl from-amber-500/10 via-transparent to-transparent" />
               }
-              Icon={Bot}
+              Icon={HelmetIcon}
               description="State-of-the-art artificial intelligence providing personalized recommendations and predictive analytics for competitive advantage."
-              cta="Explore AI"
+              cta="Explore"
               onClick={() => onNavigate("pre-event")}
             />
           </BentoGrid>
@@ -121,7 +122,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         <section className="w-full max-w-6xl mx-auto mb-16">
           <div className="glass-card p-10">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">Quick Start Guide</h2>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Quick Start Guide</h2>
               <p className="text-muted-foreground">Get started in 3 simple steps</p>
             </div>
 
@@ -130,7 +131,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary text-2xl font-bold mb-4">
                   1
                 </div>
-                <h3 className="font-bold text-white mb-2">Select Your Track</h3>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2">Select Your Track</h3>
                 <p className="text-sm text-muted-foreground">
                   Choose from 7 iconic racing circuits including Barber, Indianapolis, COTA, and more
                 </p>
@@ -139,7 +140,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary text-2xl font-bold mb-4">
                   2
                 </div>
-                <h3 className="font-bold text-white mb-2">Pick Your Analysis</h3>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2">Pick Your Analysis</h3>
                 <p className="text-sm text-muted-foreground">
                   Choose between training optimization, pre-event predictions, or post-race analysis
                 </p>
@@ -148,7 +149,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary text-2xl font-bold mb-4">
                   3
                 </div>
-                <h3 className="font-bold text-white mb-2">Get AI Insights</h3>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-2">Get Insights</h3>
                 <p className="text-sm text-muted-foreground">
                   Receive personalized recommendations and actionable insights powered by Google Gemini
                 </p>
